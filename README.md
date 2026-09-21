@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+https://www.figma.com/design/Uw6MPk2JMJcUpH4XY6X6UC/Zadanie-rekrutacyjne---WorkConnect?t=RKTfClGKlrpuRDsP-0
 
 ## Getting Started
 
