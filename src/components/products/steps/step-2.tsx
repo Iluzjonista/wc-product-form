@@ -17,7 +17,6 @@ import {
   toAmountString,
 } from "@/lib/format";
 
-/** Zostawia tylko cyfry i jeden separator dziesiętny, maks. 2 miejsca po nim. */
 function sanitizeAmount(value: string) {
   const normalized = value.replace(/[^\d.,]/g, "").replace(",", ".");
   const [whole, ...rest] = normalized.split(".");
@@ -45,7 +44,6 @@ export function Step2({ form }: { form: ProductFormApi }) {
                   const next = sanitizeAmount(event.target.value);
                   field.handleChange(next);
 
-                  // Netto steruje brutto przy aktualnej stawce VAT.
                   const vat = Number(form.getFieldValue("vatRate"));
                   form.setFieldValue(
                     "priceGross",
@@ -78,7 +76,6 @@ export function Step2({ form }: { form: ProductFormApi }) {
                   const next = sanitizeAmount(event.target.value);
                   field.handleChange(next);
 
-                  // Brutto steruje netto, ten sam wzór w drugą stronę.
                   const vat = Number(form.getFieldValue("vatRate"));
                   form.setFieldValue(
                     "priceNet",
@@ -104,7 +101,6 @@ export function Step2({ form }: { form: ProductFormApi }) {
                   field.handleChange(value as VatRate);
                   field.handleBlur();
 
-                  // Nowa stawka przelicza brutto z niezmienionego netta.
                   const net = form.getFieldValue("priceNet");
                   if (net !== "") {
                     form.setFieldValue(
