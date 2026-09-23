@@ -1,6 +1,6 @@
 "use client";
 
-import { FormField, toErrorMessage } from "@/components/products/form-field";
+import { FormField, getFieldError } from "@/components/products/form-field";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -54,9 +54,7 @@ export function Step3({ form }: { form: ProductFormApi }) {
             <div className="border-b border-border py-4">
               <form.Field name="stockQuantity">
                 {(field) => {
-                  const error = field.state.meta.isTouched
-                    ? toErrorMessage(field.state.meta.errors)
-                    : undefined;
+                  const error = getFieldError(field);
                   return (
                     <FormField
                       name={field.name}
@@ -94,9 +92,7 @@ export function Step3({ form }: { form: ProductFormApi }) {
         <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2">
           <form.Field name="minQuantity">
             {(field) => {
-              const error = field.state.meta.isTouched
-                ? toErrorMessage(field.state.meta.errors)
-                : undefined;
+              const error = getFieldError(field);
               return (
                 <FormField
                   name={field.name}
@@ -123,9 +119,7 @@ export function Step3({ form }: { form: ProductFormApi }) {
 
           <form.Field name="maxQuantity">
             {(field) => {
-              const error = field.state.meta.isTouched
-                ? toErrorMessage(field.state.meta.errors)
-                : undefined;
+              const error = getFieldError(field);
               return (
                 <FormField
                   name={field.name}

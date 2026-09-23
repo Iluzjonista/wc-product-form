@@ -1,14 +1,12 @@
 "use client";
 
-import { FormField, toErrorMessage } from "@/components/products/form-field";
-import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  FormField,
+  getFieldError,
+  SelectItems,
+} from "@/components/products/form-field";
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { ProductFormApi } from "@/hooks/use-product-form";
 import { CURRENCIES, VAT_RATES } from "@/lib/constants";
 import type { Currency, VatRate } from "@/lib/constants";
@@ -31,9 +29,7 @@ export function Step2({ form }: { form: ProductFormApi }) {
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
       <form.Field name="priceNet">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField name={field.name} label="Cena netto" error={error}>
               <Input
@@ -66,9 +62,7 @@ export function Step2({ form }: { form: ProductFormApi }) {
 
       <form.Field name="priceGross">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField name={field.name} label="Cena brutto" error={error}>
               <Input
@@ -101,9 +95,7 @@ export function Step2({ form }: { form: ProductFormApi }) {
 
       <form.Field name="vatRate">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField name={field.name} label="Stawka VAT" error={error}>
               <Select
@@ -127,13 +119,7 @@ export function Step2({ form }: { form: ProductFormApi }) {
                 <SelectTrigger id={field.name} aria-invalid={Boolean(error)}>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
-                  {VAT_RATES.map((rate) => (
-                    <SelectItem key={rate} value={rate}>
-                      {rate}%
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+                <SelectItems items={VAT_RATES} format={(rate) => `${rate}%`} />
               </Select>
             </FormField>
           );
@@ -142,9 +128,7 @@ export function Step2({ form }: { form: ProductFormApi }) {
 
       <form.Field name="currency">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField name={field.name} label="Waluta" error={error}>
               <Select
@@ -157,13 +141,7 @@ export function Step2({ form }: { form: ProductFormApi }) {
                 <SelectTrigger id={field.name} aria-invalid={Boolean(error)}>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
-                  {CURRENCIES.map((currency) => (
-                    <SelectItem key={currency} value={currency}>
-                      {currency}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+                <SelectItems items={CURRENCIES} />
               </Select>
             </FormField>
           );

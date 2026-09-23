@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import { Label } from "@/components/ui/label";
+import { SelectContent, SelectItem } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
 export function toErrorMessage(errors: unknown[]): string | undefined {
@@ -20,6 +21,31 @@ export function toErrorMessage(errors: unknown[]): string | undefined {
   return undefined;
 }
 
+export function getFieldError(field: {
+  state: { meta: { isTouched: boolean; errors: unknown[] } };
+}): string | undefined {
+  return field.state.meta.isTouched
+    ? toErrorMessage(field.state.meta.errors)
+    : undefined;
+}
+
+interface SelectItemsProps {
+  items: readonly string[];
+  format?: (item: string) => string;
+}
+
+export function SelectItems({ items, format }: SelectItemsProps) {
+  return (
+    <SelectContent>
+      {items.map((item) => (
+        <SelectItem key={item} value={item}>
+          {format ? format(item) : item}
+        </SelectItem>
+      ))}
+    </SelectContent>
+  );
+}
+
 interface FormFieldProps {
   name: string;
   label: string;
@@ -33,7 +59,6 @@ export function FormField({
   name,
   label,
   error,
-  optional,
   className,
   children,
 }: FormFieldProps) {
@@ -41,11 +66,6 @@ export function FormField({
     <div className={cn("flex flex-col gap-2", className)}>
       <Label htmlFor={name}>
         {label}
-        {optional ? (
-          <span className="ml-1.5 font-normal text-muted-foreground">
-            (opcjonalne)
-          </span>
-        ) : null}
       </Label>
       {children}
       {error ? (

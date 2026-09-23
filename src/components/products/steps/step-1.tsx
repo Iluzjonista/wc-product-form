@@ -1,14 +1,12 @@
 "use client";
 
-import { FormField, toErrorMessage } from "@/components/products/form-field";
-import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  FormField,
+  getFieldError,
+  SelectItems,
+} from "@/components/products/form-field";
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import type { ProductFormApi } from "@/hooks/use-product-form";
@@ -20,9 +18,7 @@ export function Step1({ form }: { form: ProductFormApi }) {
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
       <form.Field name="name">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField name={field.name} label="Nazwa produktu" error={error}>
               <Input
@@ -42,9 +38,7 @@ export function Step1({ form }: { form: ProductFormApi }) {
 
       <form.Field name="sku">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField name={field.name} label="SKU produktu" error={error}>
               <Input
@@ -68,9 +62,7 @@ export function Step1({ form }: { form: ProductFormApi }) {
 
       <form.Field name="description">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField
               name={field.name}
@@ -95,9 +87,7 @@ export function Step1({ form }: { form: ProductFormApi }) {
 
       <form.Field name="producer">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField name={field.name} label="Producent" error={error}>
               <Select
@@ -114,13 +104,7 @@ export function Step1({ form }: { form: ProductFormApi }) {
                 >
                   <SelectValue placeholder="Wybierz producenta" />
                 </SelectTrigger>
-                <SelectContent>
-                  {PRODUCERS.map((producer) => (
-                    <SelectItem key={producer} value={producer}>
-                      {producer}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+                <SelectItems items={PRODUCERS} />
               </Select>
             </FormField>
           );
@@ -129,9 +113,7 @@ export function Step1({ form }: { form: ProductFormApi }) {
 
       <form.Field name="category">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField name={field.name} label="Kategoria" error={error}>
               <Select
@@ -148,13 +130,7 @@ export function Step1({ form }: { form: ProductFormApi }) {
                 >
                   <SelectValue placeholder="Wybierz kategorię" />
                 </SelectTrigger>
-                <SelectContent>
-                  {CATEGORIES.map((category) => (
-                    <SelectItem key={category} value={category}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+                <SelectItems items={CATEGORIES} />
               </Select>
             </FormField>
           );
@@ -163,9 +139,7 @@ export function Step1({ form }: { form: ProductFormApi }) {
 
       <form.Field name="features">
         {(field) => {
-          const error = field.state.meta.isTouched
-            ? toErrorMessage(field.state.meta.errors)
-            : undefined;
+          const error = getFieldError(field);
           return (
             <FormField
               name={field.name}
