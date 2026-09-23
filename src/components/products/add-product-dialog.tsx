@@ -92,7 +92,7 @@ export function AddProductDialog() {
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button className="w-full sm:w-auto">
+        <Button>
           <Plus />
           Dodaj produkt
         </Button>
