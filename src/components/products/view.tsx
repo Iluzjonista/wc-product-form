@@ -3,12 +3,13 @@
 import * as React from "react";
 import { parseAsInteger, useQueryState } from "nuqs";
 
+import { AddProductDialog } from "@/components/products/add-product-dialog";
 import { CardList } from "@/components/products/card-list";
 import { Pagination } from "@/components/products/pagination";
 import { ProductsTable } from "@/components/products/table";
 import { PAGE_SIZE } from "@/lib/constants";
 import { pluralizeProducts } from "@/lib/format";
-import { MOCK_PRODUCTS } from "@/lib/mockdata";
+import { useProducts } from "@/hooks/use-products";
 
 export function View() {
   const [page, setPage] = useQueryState(
@@ -16,7 +17,7 @@ export function View() {
     parseAsInteger.withDefault(1).withOptions({ history: "push" }),
   );
 
-  const products = MOCK_PRODUCTS;
+  const { products } = useProducts();
   const pageCount = Math.max(1, Math.ceil(products.length / PAGE_SIZE));
   const currentPage = Math.min(Math.max(page, 1), pageCount);
 
@@ -38,11 +39,14 @@ export function View() {
 
   return (
     <div className="flex flex-col gap-6">
-      <header>
-        <h1 className="text-2xl font-semibold tracking-tight">Produkty</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {products.length} {pluralizeProducts(products.length)} w katalogu
-        </p>
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Produkty</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {products.length} {pluralizeProducts(products.length)} w katalogu
+          </p>
+        </div>
+        <AddProductDialog />
       </header>
 
       <section className="hidden overflow-hidden rounded-xl border border-border bg-card md:block">

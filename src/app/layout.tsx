@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { Providers } from "@/app/providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="pl" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );
