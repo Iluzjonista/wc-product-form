@@ -20,6 +20,8 @@ npm run dev
 
 Otwórz [http://localhost:3000](http://localhost:3000).
 
+Wersja live: [https://wc-product-form.vercel.app/](https://wc-product-form.vercel.app/)
+
 ## Build produkcyjny
 
 ```bash
@@ -36,5 +38,3 @@ npm start
 - Tabela produktów z przykładowymi produktami (dane mockowe)
 - Paginacja synchronizowana z URL (nuqs)
 - Zamknięcie dialogu resetuje formularz do kroku 1
-
-https://www.figma.com/design/Uw6MPk2JMJcUpH4XY6X6UC/Zadanie-rekrutacyjne---WorkConnect?t=RKTfClGKlrpuRDsP-0

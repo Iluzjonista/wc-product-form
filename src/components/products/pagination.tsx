@@ -29,7 +29,7 @@ export function Pagination({
         type="button"
         onClick={() => onPageChange(page - 1)}
         disabled={page <= 1}
-        className="inline-flex h-9 items-center gap-1 rounded-md px-2 text-sm text-foreground transition-colors hover:bg-muted disabled:pointer-events-none disabled:text-muted-foreground/60"
+        className="inline-flex h-9 cursor-pointer items-center gap-1 rounded-md px-2 text-sm text-foreground transition-colors hover:bg-muted disabled:pointer-events-none disabled:text-muted-foreground/60"
       >
         <ChevronLeft className="size-4" />
         Wstecz
@@ -42,7 +42,7 @@ export function Pagination({
           onClick={() => onPageChange(item)}
           aria-current={item === page ? "page" : undefined}
           className={cn(
-            "inline-flex size-9 items-center justify-center rounded-md text-sm transition-colors",
+            "inline-flex size-9 cursor-pointer items-center justify-center rounded-md text-sm transition-colors",
             item === page
               ? "bg-primary font-medium text-primary-foreground"
               : "text-foreground hover:bg-muted",
@@ -56,7 +56,7 @@ export function Pagination({
         type="button"
         onClick={() => onPageChange(page + 1)}
         disabled={page >= pageCount}
-        className="inline-flex h-9 items-center gap-1 rounded-md px-2 text-sm text-foreground transition-colors hover:bg-muted disabled:pointer-events-none disabled:text-muted-foreground/60"
+        className="inline-flex h-9 cursor-pointer items-center gap-1 rounded-md px-2 text-sm text-foreground transition-colors hover:bg-muted disabled:pointer-events-none disabled:text-muted-foreground/60"
       >
         Dalej
         <ChevronRight className="size-4" />

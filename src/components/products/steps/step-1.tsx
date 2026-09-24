@@ -161,7 +161,7 @@ export function Step1({ form }: { form: ProductFormApi }) {
                     key={feature}
                     value={feature}
                     variant="outline"
-                    className="rounded-full data-[state=on]:border-primary data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+                    className="cursor-pointer rounded-full data-[state=on]:border-primary data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
                   >
                     {feature}
                   </ToggleGroupItem>
